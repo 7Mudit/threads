@@ -34,7 +34,7 @@ type Event = {
   type: EventType;
 };
 
-export const POST = async (request: Request) => {
+export const POST = async (request: Request): Promise<Response> => {
   const payload = await request.json();
   const header = headers();
 
@@ -205,4 +205,6 @@ export const POST = async (request: Request) => {
       );
     }
   }
+
+  return NextResponse.json({ message: "Unhandled event type or error occurred." }, { status: 400 });
 };
